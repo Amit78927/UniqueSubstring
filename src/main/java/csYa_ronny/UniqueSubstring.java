@@ -7,9 +7,19 @@ public class UniqueSubstring {
                 longestUniqueSubstring(input));
     }
 
-    public static String longestUniqueSubstring(String input) {
-        // TODO: Implement the logic to find the longest substring with unique characters
-        return "";  // Return an empty string by default
+    public static int longestUniqueSubstring(String input) {
+        int amount=0;
+        int sum=0;
+        for (int i=0;i<input.length();i++) {
+            for (int j = i+1; j < input.length(); j++) {
+                if (input.substring(i, j - 1).contains(String.valueOf(input.charAt(j))))
+                    amount++;
+            }
+            if (amount > sum)
+                sum = amount;
+            amount = 0;
+        }
+        return sum;
 
     }
 }
